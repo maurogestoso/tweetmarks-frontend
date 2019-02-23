@@ -19,7 +19,8 @@
   "extends": [
       "eslint:recommended",
       "google",
-      "plugin:react/recommended"
+      "plugin:react/recommended",
+      "prettier"
   ],
   "rules": {
       "require-jsdoc": 0,
