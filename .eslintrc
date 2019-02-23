@@ -1,9 +1,10 @@
 {
+  "parser": "babel-eslint",
   "plugins": [
       "react"
   ],
   "parserOptions": {
-      "ecmaVersion": 6,
+      "ecmaVersion": 8,
       "sourceType": "module",
       "ecmaFeatures": {
           "jsx": true
@@ -21,7 +22,9 @@
       "plugin:react/recommended"
   ],
   "rules": {
-      "require-jsdoc": 0
+      "require-jsdoc": 0,
+      "no-invalid-this": 0,
+      "no-console": 0
   },
   "settings": {
     "react": {
