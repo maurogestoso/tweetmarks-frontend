@@ -9,7 +9,7 @@ import Home from "./Home";
 
 const App = () => (
   <Router>
-    <div>
+    <div className="container-fluid">
       <Route exact path="/" component={Welcome} />
       <Route path="/home" component={Home} />
     </div>

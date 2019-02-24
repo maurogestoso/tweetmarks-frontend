@@ -7,11 +7,26 @@ import Favourite from "./Favourite";
 
 class Home extends React.Component {
   state = {
-    favourites: []
+    favourites: [],
+    user: {}
   };
 
   componentDidMount = () => {
     this.fetchFavourites();
+    this.fetchUserData();
+  };
+
+  fetchUserData = async () => {
+    try {
+      const res = await axios.get(`${API_ROOT}/api/profile`, {
+        withCredentials: true
+      });
+      this.setState({
+        user: res.data.profile
+      });
+    } catch (err) {
+      if (!err.response) throw err;
+    }
   };
 
   fetchFavourites = async () => {
@@ -33,7 +48,15 @@ class Home extends React.Component {
         <h1>Welcome to your favourites</h1>
         <div>
           {this.state.favourites.map(f => (
-            <Favourite key={f.id} data={f} />
+            <Favourite
+              key={f.id}
+              data={f}
+              linkColor={
+                this.state.user
+                  ? `#${this.state.user.profile_link_color}`
+                  : "#14171a"
+              }
+            />
           ))}
         </div>
       </div>
