@@ -1,53 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { TwitterTweetEmbed } from "react-twitter-embed";
 import "./Favourite.css";
 
-const TweetHeaderLink = styled.a`
-  color: #14171a;
-  :link {
-    color: #14171a;
-  }
-  :hover,
-  :active {
-    color: ${props => props.linkColor};
-  }
+const WideButton = styled.button`
+  width: 100%;
+  display: block;
+  margin-bottom: 5px;
 `;
 
-const Favourite = ({ data, linkColor }) => {
+const Favourite = ({ data }) => {
   return (
-    <div className="media-container">
-      <div className="media">
-        <a
-          href={`https://twitter.com/${data.user.screen_name}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src={data.user.profile_image_url_https}
-            className="mr-3 profile-image-icon"
-            alt={data.user.name}
-          />
-        </a>
-        <div className="media-body">
-          <TweetHeaderLink
-            linkColor={linkColor}
-            href={`https://twitter.com/${data.user.screen_name}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h6>{data.user.name}</h6>
-          </TweetHeaderLink>
-          <p>{data.full_text}</p>
-        </div>
+    <div className="row d-flex justify-content-md-center tweet-container">
+      <div className="col-12 col-md-10 col-lg-6">
+        <TwitterTweetEmbed tweetId={data.id_str} />
+        <WideButton type="button" className="btn btn-danger">
+          Ignore
+        </WideButton>
+        <WideButton type="button" className="btn btn-light">
+          Add to collection
+        </WideButton>
       </div>
     </div>
   );
 };
 
 Favourite.propTypes = {
-  data: PropTypes.object.isRequired,
-  linkColor: PropTypes.string
+  data: PropTypes.object.isRequired
 };
 
 export default Favourite;

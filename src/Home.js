@@ -46,17 +46,9 @@ class Home extends React.Component {
     return (
       <div>
         <h1>Welcome to your favourites</h1>
-        <div>
+        <div className="container">
           {this.state.favourites.map(f => (
-            <Favourite
-              key={f.id}
-              data={f}
-              linkColor={
-                this.state.user
-                  ? `#${this.state.user.profile_link_color}`
-                  : "#14171a"
-              }
-            />
+            <Favourite key={f.id} data={f} />
           ))}
         </div>
       </div>

@@ -1,8 +1,7 @@
-.media-container {
-  border: 1px solid #e6ecf0;
-  padding: 10px;
+.tweet-container {
+  margin-bottom: 40px;
 }
 
-.profile-image-icon {
-  border-radius: 50%;
+.twitter-tweet-rendered {
+  margin: 10px auto;
 }
