@@ -10,7 +10,7 @@ const WideButton = styled.button`
   margin-bottom: 5px;
 `;
 
-const Favourite = ({ data }) => {
+const Favourite = ({ data, openModal }) => {
   return (
     <div className="row d-flex justify-content-md-center tweet-container">
       <div className="col-12 col-md-10 col-lg-6">
@@ -18,7 +18,11 @@ const Favourite = ({ data }) => {
         <WideButton type="button" className="btn btn-danger">
           Ignore
         </WideButton>
-        <WideButton type="button" className="btn btn-light">
+        <WideButton
+          type="button"
+          className="btn btn-light"
+          onClick={openModal.bind(data)}
+        >
           Add to collection
         </WideButton>
       </div>
@@ -27,7 +31,8 @@ const Favourite = ({ data }) => {
 };
 
 Favourite.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  openModal: PropTypes.func.isRequired
 };
 
 export default Favourite;

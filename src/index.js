@@ -4,6 +4,11 @@ import ReactDOM from "react-dom";
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faPlus);
+
 import Welcome from "./Welcome";
 import Home from "./Home";
 

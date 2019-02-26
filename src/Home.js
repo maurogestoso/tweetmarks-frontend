@@ -4,16 +4,49 @@ import settings from "../settings";
 const { API_ROOT } = settings[process.env.NODE_ENV];
 
 import Favourite from "./Favourite";
+import AddToCollection from "./AddToCollection";
 
 class Home extends React.Component {
   state = {
+    selectedFavourite: null,
+    modalIsOpen: false,
     favourites: [],
-    user: {}
+    user: {},
+    collections: [
+      { name: "Spanish", id: 1 },
+      { name: "JavaScript", id: 2 },
+      { name: "CS", id: 3 },
+      { name: "Teaching", id: 5 }
+    ]
   };
+
+  openModal = favourite => {
+    this.setState({ modalIsOpen: true, selectedFavourite: favourite.id_str });
+  };
+
+  closeModal = () => {
+    this.setState({ modalIsOpen: false });
+  };
+
+  afterOpenModal = () => {};
 
   componentDidMount = () => {
     this.fetchFavourites();
     this.fetchUserData();
+    // this.fetchCollections();
+  };
+
+  fetchCollections = async () => {
+    try {
+      const res = await axios.get(`${API_ROOT}/api/collections`, {
+        withCredentials: true
+      });
+      this.setState({
+        collections: res.data.collections
+      });
+    } catch (err) {
+      if (!err.response) throw err;
+    }
   };
 
   fetchUserData = async () => {
@@ -45,10 +78,16 @@ class Home extends React.Component {
   render() {
     return (
       <div>
+        <AddToCollection
+          isOpen={this.state.modalIsOpen}
+          closeModal={this.closeModal}
+          afterOpenModal={this.afterOpenModal}
+          collections={this.state.collections}
+        />
         <h1>Welcome to your favourites</h1>
         <div className="container">
           {this.state.favourites.map(f => (
-            <Favourite key={f.id} data={f} />
+            <Favourite key={f.id} data={f} openModal={this.openModal} />
           ))}
         </div>
       </div>
