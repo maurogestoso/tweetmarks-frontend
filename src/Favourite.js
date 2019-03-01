@@ -12,7 +12,10 @@ const WideButton = styled.button`
 
 const Favourite = ({ data, openModal }) => {
   return (
-    <div className="row d-flex justify-content-md-center tweet-container">
+    <div
+      className="row d-flex justify-content-md-center"
+      style={{ marginBottom: "40px" }}
+    >
       <div className="col-12 col-md-10 col-lg-6">
         <TwitterTweetEmbed tweetId={data.id_str} />
         <WideButton type="button" className="btn btn-danger">

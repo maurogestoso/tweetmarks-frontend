@@ -1,0 +1,8 @@
+.main-nav .active {
+  color: rgb(33, 37, 41);
+  text-decoration: underline;
+}
+
+.main-nav .nav-item {
+  font-size: 1.2rem;
+}

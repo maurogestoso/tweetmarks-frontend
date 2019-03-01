@@ -1,10 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import settings from "../settings";
 const { API_ROOT } = settings[process.env.NODE_ENV];
 
 import Favourite from "./Favourite";
 import AddToCollection from "./AddToCollection";
+import Nav from "./Nav";
 
 class Home extends React.Component {
   state = {
@@ -12,12 +14,7 @@ class Home extends React.Component {
     modalIsOpen: false,
     favourites: [],
     user: {},
-    collections: [
-      { name: "Spanish", id: 1 },
-      { name: "JavaScript", id: 2 },
-      { name: "CS", id: 3 },
-      { name: "Teaching", id: 5 }
-    ]
+    collections: []
   };
 
   openModal = favourite => {
@@ -33,7 +30,7 @@ class Home extends React.Component {
   componentDidMount = () => {
     this.fetchFavourites();
     this.fetchUserData();
-    // this.fetchCollections();
+    this.fetchCollections();
   };
 
   fetchCollections = async () => {
@@ -68,7 +65,7 @@ class Home extends React.Component {
         withCredentials: true
       });
       this.setState({
-        favourites: res.data.tweets
+        favourites: res.data.favorites
       });
     } catch (err) {
       if (!err.response) throw err;
@@ -84,15 +81,22 @@ class Home extends React.Component {
           afterOpenModal={this.afterOpenModal}
           collections={this.state.collections}
         />
-        <h1>Welcome to your favourites</h1>
+
+        <Nav path={this.props.location.pathname} />
+        <h1>Recent Favourites to Process</h1>
+
         <div className="container">
-          {this.state.favourites.map(f => (
-            <Favourite key={f.id} data={f} openModal={this.openModal} />
+          {this.state.favourites.map((f, i) => (
+            <Favourite key={i} data={f} openModal={this.openModal} />
           ))}
         </div>
       </div>
     );
   }
+
+  static propTypes = {
+    location: PropTypes.object.isRequired
+  };
 }
 
 export default Home;

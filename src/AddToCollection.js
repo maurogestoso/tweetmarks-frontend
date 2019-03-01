@@ -1,8 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const StyledLink = styled(Link)`
+  &:link,
+  :visited,
+  :hover {
+    color: rgb(33, 37, 41);
+    text-decoration: none;
+  }
+`;
 
 const CollectionNameItem = styled.li`
   &:hover {
@@ -49,7 +59,7 @@ class AddToCollection extends React.Component {
             </button>
           </div>
           <div className="modal-body">
-            <ul className="list-group">
+            <ul className="list-group tweet-options-list">
               {this.props.collections.map(collection => (
                 <CollectionNameItem
                   className="list-group-item"
@@ -58,12 +68,14 @@ class AddToCollection extends React.Component {
                   {collection.name}
                 </CollectionNameItem>
               ))}
-              <CollectionNameItem className="list-group-item">
-                <FontAwesomeIcon icon="plus" />
-                <span style={{ marginLeft: "10px" }}>
-                  Create new collection
-                </span>
-              </CollectionNameItem>
+              <StyledLink to="/collections/new">
+                <CollectionNameItem className="list-group-item">
+                  <FontAwesomeIcon icon="plus" />
+                  <span style={{ marginLeft: "10px" }}>
+                    Create new collection
+                  </span>
+                </CollectionNameItem>
+              </StyledLink>
             </ul>
           </div>
           <div className="modal-footer">
