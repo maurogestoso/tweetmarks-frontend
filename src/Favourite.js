@@ -4,30 +4,31 @@ import styled from "styled-components";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import "./Favourite.css";
 
-const WideButton = styled.button`
-  width: 100%;
-  display: block;
-  margin-bottom: 5px;
+const FlexDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  button {
+    margin: 10px;
+  }
+`;
+
+const BlackButton = styled.button`
+  background-color: #353535;
+  color: #f4f9f3;
+  &:hover {
+    color: #f4f9f3;
+  }
 `;
 
 const Favourite = ({ data, openModal }) => {
   return (
-    <div
-      className="row d-flex justify-content-md-center"
-      style={{ marginBottom: "40px" }}
-    >
-      <div className="col-12 col-md-10 col-lg-6">
+    <div className="row" style={{ marginBottom: "40px" }}>
+      <div className="col">
         <TwitterTweetEmbed tweetId={data.id_str} />
-        <WideButton type="button" className="btn btn-danger">
-          Ignore
-        </WideButton>
-        <WideButton
-          type="button"
-          className="btn btn-light"
-          onClick={openModal.bind(data)}
-        >
-          Add to collection
-        </WideButton>
+        <FlexDiv>
+          <BlackButton>Ignore</BlackButton>
+          <button onClick={openModal.bind(data)}>Add to collection</button>
+        </FlexDiv>
       </div>
     </div>
   );

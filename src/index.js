@@ -1,5 +1,7 @@
 import "@babel/polyfill";
-import "bootstrap/dist/css/bootstrap.css";
+import "./normalize.css";
+import "./skeleton.css";
+import "./main.css";
 import ReactDOM from "react-dom";
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";

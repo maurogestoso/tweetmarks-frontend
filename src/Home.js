@@ -83,12 +83,14 @@ class Home extends React.Component {
         />
 
         <Nav path={this.props.location.pathname} />
-        <h1>Recent Favourites to Process</h1>
-
         <div className="container">
-          {this.state.favourites.map((f, i) => (
-            <Favourite key={i} data={f} openModal={this.openModal} />
-          ))}
+          <h1 style={{ textAlign: "center" }}>Recent Favourites to Process</h1>
+
+          <div>
+            {this.state.favourites.map((f, i) => (
+              <Favourite key={i} data={f} openModal={this.openModal} />
+            ))}
+          </div>
         </div>
       </div>
     );

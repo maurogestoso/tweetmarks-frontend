@@ -5,33 +5,24 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const StyledLink = styled(Link)`
-  &:link,
-  :visited,
-  :hover {
-    color: rgb(33, 37, 41);
-    text-decoration: none;
-  }
-`;
-
-const CollectionNameItem = styled.li`
+const AddToCollectionOpt = styled.li`
+  cursor: pointer;
   &:hover {
-    cursor: pointer;
-    background: #a8fccc;
+    text-decoration: underline;
   }
 `;
 
 Modal.setAppElement("#root");
 const customStyles = {
   content: {
+    border: "1px solid #353535",
     top: "50%",
     left: "50%",
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    border: "none",
-    background: "none",
+    background: "#fff",
     minWidth: "500px"
   }
 };
@@ -46,46 +37,37 @@ class AddToCollection extends React.Component {
         style={customStyles}
         contentLabel="Add Tweet to a collection"
       >
-        <div className="modal-content">
-          <div className="modal-header">
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h5 className="modal-title">Add Tweet to a collection</h5>
             <button
-              type="button"
-              className="close"
-              aria-label="Close"
               onClick={this.props.closeModal}
+              style={{ backgroundColor: "#353535", color: "#fff" }}
             >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div className="modal-body">
-            <ul className="list-group tweet-options-list">
+          <div>
+            <ul>
               {this.props.collections.map(collection => (
-                <CollectionNameItem
+                <AddToCollectionOpt
                   className="list-group-item"
                   key={collection.id}
                 >
                   {collection.name}
-                </CollectionNameItem>
+                </AddToCollectionOpt>
               ))}
-              <StyledLink to="/collections/new">
-                <CollectionNameItem className="list-group-item">
-                  <FontAwesomeIcon icon="plus" />
-                  <span style={{ marginLeft: "10px" }}>
-                    Create new collection
-                  </span>
-                </CollectionNameItem>
-              </StyledLink>
             </ul>
           </div>
           <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={this.props.closeModal}
-            >
-              Close
-            </button>
+            <Link to="/collections/new">
+              <button>
+                <FontAwesomeIcon icon="plus" />
+                <span style={{ marginLeft: "10px" }}>
+                  Create new collection
+                </span>
+              </button>
+            </Link>
           </div>
         </div>
       </Modal>

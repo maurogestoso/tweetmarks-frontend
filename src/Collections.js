@@ -10,14 +10,16 @@ import Nav from "./Nav";
 const CollectionDiv = styled.div`
   width: 200px;
   height: 200px;
+  border: 1px solid #353535;
   text-align: center;
-  background-color: #d8f1d5;
+  background-color: #f2fcf9;
   margin: 10px 5px 0px 5px;
   display: flex;
   align-items: center;
   justify-content: center;
   &:hover {
     opacity: 0.8;
+    box-shadow: 1px 1px lightseagreen;
   }
 `;
 
@@ -64,27 +66,31 @@ class Collections extends React.Component {
     return (
       <div>
         <Nav path={location.pathname} />
-        <h1>All my collections</h1>
-        <div className="text-right">
-          <Link to="/collections/new">
-            <button className="btn btn-light">
-              <FontAwesomeIcon icon="plus" />
-              <span style={{ marginLeft: "10px" }}>Create new collection</span>
-            </button>
-          </Link>
-        </div>
-        <div className="d-flex">
-          {this.state.collections.map((collection, i) => (
-            <StyledLink
-              to={`/collections/${collection._id}`}
-              key={i}
-              className="collectionLink"
-            >
-              <CollectionDiv>
-                <CollectionName>{collection.name}</CollectionName>
-              </CollectionDiv>
-            </StyledLink>
-          ))}
+        <div className="container">
+          <h1 style={{ textAlign: "center" }}>My collections</h1>
+          <div style={{ textAlign: "center" }}>
+            <Link to="/collections/new">
+              <button>
+                <FontAwesomeIcon icon="plus" />
+                <span style={{ marginLeft: "10px" }}>
+                  Create new collection
+                </span>
+              </button>
+            </Link>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
+            {this.state.collections.map((collection, i) => (
+              <StyledLink
+                to={`/collections/${collection._id}`}
+                key={i}
+                className="collectionLink"
+              >
+                <CollectionDiv>
+                  <CollectionName>{collection.name}</CollectionName>
+                </CollectionDiv>
+              </StyledLink>
+            ))}
+          </div>
         </div>
       </div>
     );

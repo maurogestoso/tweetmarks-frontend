@@ -48,25 +48,27 @@ class NewCollection extends React.Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-6">
-          <Nav path={location.pathname} />
-          <h1>Create a new collection</h1>
+      <div>
+        <Nav path={location.pathname} />
+        <div className="container">
+          <h1 style={{ textAlign: "center" }}>Create a new collection</h1>
           <form>
-            <div className="form-group">
-              <label htmlFor="collectionName">Collection Name</label>
-              <input
-                type="text"
-                onChange={this.updateName}
-                className="form-control"
-                id="collectionName"
-                value={this.state.collectionName}
-              />
+            <div className="row">
+              <div
+                style={{ margin: "auto", width: "400px", textAlign: "center" }}
+              >
+                <label htmlFor="collectionName">Collection Name</label>
+                <input
+                  type="text"
+                  className="u-full-width"
+                  onChange={this.updateName}
+                  id="collectionName"
+                  value={this.state.collectionName}
+                />
+                <button onClick={this.createCollection}>Create</button>
+                {this.state.error && <Error>{this.state.error}</Error>}
+              </div>
             </div>
-            <button className="btn btn-primary" onClick={this.createCollection}>
-              Create
-            </button>
-            {this.state.error && <Error>{this.state.error}</Error>}
           </form>
         </div>
       </div>
