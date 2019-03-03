@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
-import settings from "../settings";
+import settings from "../../settings";
 const { API_ROOT } = settings[process.env.NODE_ENV];
 
 class Welcome extends React.Component {

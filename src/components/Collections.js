@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import settings from "../settings";
+import settings from "../../settings";
 import Nav from "./Nav";
 
 const CollectionDiv = styled.div`

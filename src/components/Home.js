@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import settings from "../settings";
+import settings from "../../settings";
 const { API_ROOT } = settings[process.env.NODE_ENV];
 
 import Favourite from "./Favourite";

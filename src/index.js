@@ -11,10 +11,10 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faPlus);
 
-import Welcome from "./Welcome";
-import Home from "./Home";
-import Collections from "./Collections";
-import NewCollection from "./NewCollection";
+import Welcome from "./components/Welcome";
+import Home from "./components/Home";
+import Collections from "./components/Collections";
+import NewCollection from "./components/NewCollection";
 
 const App = () => (
   <Router>

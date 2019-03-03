@@ -3,7 +3,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Nav from "./Nav";
-import settings from "../settings";
+import settings from "../../settings";
 const { API_ROOT } = settings[process.env.NODE_ENV];
 
 const Error = styled.p`
