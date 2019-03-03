@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import ModalHeader from "./ModalHeader";
+
 const AddToCollectionOpt = styled.li`
   cursor: pointer;
   &:hover {
@@ -38,22 +40,14 @@ class AddToCollection extends React.Component {
         contentLabel="Add Tweet to a collection"
       >
         <div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <h5 className="modal-title">Add Tweet to a collection</h5>
-            <button
-              onClick={this.props.closeModal}
-              style={{ backgroundColor: "#353535", color: "#fff" }}
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+          <ModalHeader
+            title="Add Tweet to a collection"
+            closeModal={this.props.closeModal}
+          />
           <div>
             <ul>
-              {this.props.collections.map(collection => (
-                <AddToCollectionOpt
-                  className="list-group-item"
-                  key={collection.id}
-                >
+              {this.props.collections.map((collection, i) => (
+                <AddToCollectionOpt className="list-group-item" key={i}>
                   {collection.name}
                 </AddToCollectionOpt>
               ))}
