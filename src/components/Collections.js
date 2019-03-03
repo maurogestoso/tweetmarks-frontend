@@ -1,10 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import settings from "../../settings";
 import Nav from "./Nav";
 
 const CollectionDiv = styled.div`
@@ -38,30 +36,7 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const { API_ROOT } = settings[process.env.NODE_ENV];
-
 class Collections extends React.Component {
-  state = {
-    collections: []
-  };
-
-  componentDidMount() {
-    this.fetchCollections();
-  }
-
-  fetchCollections = async () => {
-    try {
-      const res = await axios.get(`${API_ROOT}/api/collections`, {
-        withCredentials: true
-      });
-      this.setState({
-        collections: res.data.collections
-      });
-    } catch (err) {
-      if (!err.response) throw err;
-    }
-  };
-
   render() {
     return (
       <div>
@@ -79,7 +54,7 @@ class Collections extends React.Component {
             </Link>
           </div>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
-            {this.state.collections.map((collection, i) => (
+            {this.props.collections.map((collection, i) => (
               <StyledLink
                 to={`/collections/${collection._id}`}
                 key={i}
@@ -98,7 +73,8 @@ class Collections extends React.Component {
 }
 
 Collections.propTypes = {
-  location: PropTypes.object.isRequired
+  location: PropTypes.object.isRequired,
+  collections: PropTypes.array.isRequired
 };
 
 export default Collections;

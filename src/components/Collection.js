@@ -54,10 +54,10 @@ class Collection extends React.Component {
   deleteCollection = async () => {
     const id = this.props.match.params.collectionId;
     try {
-      const res = await axios.delete(`${API_ROOT}/api/collections/${id}`, {
+      await axios.delete(`${API_ROOT}/api/collections/${id}`, {
         withCredentials: true
       });
-      console.log(res);
+      this.props.removeCollectionFromList(id);
       this.props.history.push("/collections");
     } catch (e) {
       if (!e.response) throw e;
@@ -103,7 +103,8 @@ class Collection extends React.Component {
 
   static propTypes = {
     match: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    removeCollectionFromList: PropTypes.func.isRequired
   };
 }
 

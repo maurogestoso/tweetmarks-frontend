@@ -13,8 +13,7 @@ class Home extends React.Component {
     selectedFavourite: null,
     modalIsOpen: false,
     favourites: [],
-    user: {},
-    collections: []
+    user: {}
   };
 
   openModal = favourite => {
@@ -30,20 +29,6 @@ class Home extends React.Component {
   componentDidMount = () => {
     this.fetchFavourites();
     this.fetchUserData();
-    this.fetchCollections();
-  };
-
-  fetchCollections = async () => {
-    try {
-      const res = await axios.get(`${API_ROOT}/api/collections`, {
-        withCredentials: true
-      });
-      this.setState({
-        collections: res.data.collections
-      });
-    } catch (err) {
-      if (!err.response) throw err;
-    }
   };
 
   fetchUserData = async () => {
@@ -79,7 +64,7 @@ class Home extends React.Component {
           isOpen={this.state.modalIsOpen}
           closeModal={this.closeModal}
           afterOpenModal={this.afterOpenModal}
-          collections={this.state.collections}
+          collections={this.props.collections}
         />
 
         <Nav path={this.props.location.pathname} />
@@ -97,7 +82,8 @@ class Home extends React.Component {
   }
 
   static propTypes = {
-    location: PropTypes.object.isRequired
+    location: PropTypes.object.isRequired,
+    collections: PropTypes.array.isRequired
   };
 }
 

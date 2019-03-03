@@ -22,10 +22,10 @@ class NewCollection extends React.Component {
     });
   };
 
-  createCollection = e => {
+  createCollection = async e => {
     e.preventDefault();
     try {
-      axios.post(
+      const res = await axios.post(
         `${API_ROOT}/api/collections`,
         {
           name: this.state.name
@@ -34,6 +34,7 @@ class NewCollection extends React.Component {
           withCredentials: true
         }
       );
+      this.props.addCollectionToList(res.data.collection);
       this.props.history.push("/collections");
     } catch (e) {
       if (e.response) {
@@ -78,7 +79,8 @@ class NewCollection extends React.Component {
 
 NewCollection.propTypes = {
   location: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  addCollectionToList: PropTypes.func.isRequired
 };
 
 export default NewCollection;
