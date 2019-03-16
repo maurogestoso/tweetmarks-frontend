@@ -27,7 +27,9 @@ const Favourite = ({ data, openModal }) => {
         <TwitterTweetEmbed tweetId={data.id_str} />
         <FlexDiv>
           <BlackButton>Ignore</BlackButton>
-          <button onClick={openModal.bind(data)}>Add to collection</button>
+          <button onClick={openModal.bind(null, data)}>
+            Add to collection
+          </button>
         </FlexDiv>
       </div>
     </div>
